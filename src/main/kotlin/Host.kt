@@ -7,5 +7,6 @@ object Host {
         for (i in 1..100) {
             emit((1..90).random())
         }
+
     }
 }

@@ -1,4 +1,5 @@
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.takeWhile
 
 class LotoCard {
     val numList : MutableList<MutableList<Int>> = mutableListOf(
@@ -41,7 +42,10 @@ class LotoCard {
     }
 
     suspend fun check() {
-        Host.generateRandomNum().collect { randomNumber: Int ->
+        Host.generateRandomNum().takeWhile {
+            numList[0].all { it == 0 || it == 100 }
+        }
+            .collect { randomNumber: Int ->
             numList.forEachIndexed { index, ints ->
                 for (i in ints.indices) {
                     if (ints[i] == randomNumber){
@@ -49,11 +53,8 @@ class LotoCard {
                     }
                 }
             }
-            numList.forEachIndexed { index, ints ->
-                if (ints.all { it == 0 && it == 100 }) {
 
-                }
-            }
+
         }
 
 
