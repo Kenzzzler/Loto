@@ -41,8 +41,8 @@ class LotoCard {
 
     }
 
-    suspend fun check() {
-        Host.generateRandomNum().takeWhile {
+    suspend fun check() { //карточка сама себя проверять не может, это должен делать игрок.
+        Host.generateRandomNum().takeWhile {  //при такой реализации у тебя для каждой карточки будет создаваться новый поток, а нам нужен один на всех. Коллектить поток надо в мэйн.
             numList[0].all { it == 0 || it == 100 }
         }
             .collect { randomNumber: Int ->
