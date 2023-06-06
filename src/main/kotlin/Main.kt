@@ -9,8 +9,8 @@ suspend fun main(args: Array<String>) {
     player1.createLotoCard()
     player2.createLotoCard()
 
-    player1.checkWin()
-    player2.checkWin()
+    player1.check()
+    player2.check()
 
 }
 

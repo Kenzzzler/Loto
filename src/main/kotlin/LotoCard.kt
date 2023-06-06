@@ -45,22 +45,7 @@ class LotoCard {
 
     }
 
-    suspend fun check() = runBlocking {
-        launch { Host.generateRandomNum()
-            .collect { randomNumber: Int ->
-                numList.forEachIndexed { index, ints ->
-                    for (i in ints.indices) {
-                        if (ints[i] == randomNumber) {
-                            ints[i] = 0
-                        }
-                    }
-                }
-                show()
-                if (numList[0].all { it == 0 }) {
-                    cancel()
-                }
-            } }
-    }
+
 
 
 
